@@ -5,6 +5,8 @@
 #include "snake.h"
 #include "food.h"
 
+using namespace std;
+
 //fields
 extern const int WIDTH = 50, HEIGHT = 25;
 
@@ -19,19 +21,19 @@ Food food(snake.GetPos());
 void board() 
 {
 	
-	std::vector<COORD> snake_body = snake.GetBody();
+	vector<COORD> snake_body = snake.GetBody();
 
 	for (int i = 0; i < HEIGHT; i++) 
 	{
 
-		std::cout << '#';
+		cout << '#';
 	
 		for (int j = 0; j < WIDTH-2; j++) // -2 because of start and end
 		{
 
-			if (i == 0 || i == HEIGHT - 1) std::cout << '#';
-			else if (i == snake.GetPos().Y && j+1 == snake.GetPos().X) std::cout << '0';
-			else if (i == food.GetPos().Y && j+1 == food.GetPos().X) std::cout << '@';
+			if (i == 0 || i == HEIGHT - 1) cout << '#';
+			else if (i == snake.GetPos().Y && j+1 == snake.GetPos().X) cout << '0';
+			else if (i == food.GetPos().Y && j+1 == food.GetPos().X) cout << '@';
 			else 
 			{
 			
@@ -43,7 +45,7 @@ void board()
 					if (i == snake_body[k].Y && j + 1 == snake_body[k].X) 
 					{
 						
-						std::cout << 'o';
+						cout << 'o';
 						is_body_part = true;
 						break;
 
@@ -52,11 +54,11 @@ void board()
 				
 				}
 			
-				if(!is_body_part) std::cout << ' ';
+				if(!is_body_part) cout << ' ';
 			}
 		}
 
-		std::cout << '#' << std::endl;
+		cout << '#' << endl;
 	
 	}
 
@@ -72,7 +74,7 @@ int main()
 	while (GAMEOVER)
 	{
 		
-		std::cout << "Your score is: " << score << "\n\n";
+		cout << "Your score is: " << score << "\n\n";
 
 		board();
 
@@ -106,7 +108,7 @@ int main()
 		if (snake.collided()) 
 		{
 			
-			std::cout << "Ended Game Cuz You Ran Into Walls.";
+			cout << "Ended Game Cuz You Ran Into Walls.";
 			GAMEOVER = false;
 			
 		}
